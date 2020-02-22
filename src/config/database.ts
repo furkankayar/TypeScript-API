@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize';
 
 
-module.exports = new Sequelize('example', 'furkan', '756ee75b',
+module.exports = new Sequelize('postgres', 'postgres', 'postgres',
   {
     host: 'localhost',
     dialect: 'postgres',
