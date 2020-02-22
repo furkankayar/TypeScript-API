@@ -18,7 +18,7 @@ describe("User Test", () => {
                     nickname: 'testMan',
                     name: 'Testtest'
                 });
-        console.log(res.body.err);
+        console.log(res.body.error);
         expect(res.status).to.equal(200);
     });
 
