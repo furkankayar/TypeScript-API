@@ -9,8 +9,30 @@ module.exports = () => {
 
     return{
         getUsername: getUsername,
-        getInfo: getInfo
+        getInfo: getInfo,
+        newUser: newUser
     }
+}
+
+function newUser(req: Request, res: Response){
+
+    let nickname = req.body.nickname;
+    let name = req.body.name;
+
+    if(nickname === undefined || name === undefined){
+        return res.status(400).json({ status: "Missing data", error: true });
+    }
+
+    User.create({
+        nickname: nickname,
+        name: name
+    })
+        .then((user: Object) => {
+            return res.status(200).json({ status: "success", error: false });
+        })
+        .catch((err: Object) => {
+            return res.status(500).json({ status: "Database error", error: true }); 
+        });
 }
 
 function getUsername(req: Request, res: Response){
