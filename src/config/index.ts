@@ -1,11 +1,6 @@
 import { Server } from "http";
 import { Sequelize } from "sequelize";
 
-interface IConfig{
-    server: Server;
-    database: Sequelize;
-}
-
 export class Config{
     private static server: Server;
     private static database: Sequelize;
@@ -13,21 +8,25 @@ export class Config{
     private constructor(){
     }
 
-    static getInstance(): IConfig{
+    static getServer(): Server{
         if(this.server === undefined){
             this.server = require("./server");
         }
+
+        return this.server;
+    }
+
+    static getDatabase(): Sequelize{
         if(this.database === undefined){
             this.database = require("./database");
         }
 
-        return {
-            server: this.server,
-            database: this.database
-        }
+        return this.database;
     }
 }
 
-export { IConfig };
-Config.getInstance();
+if(process.env.NODE_ENV !== "TEST"){
+    Config.getServer();
+}
+
 

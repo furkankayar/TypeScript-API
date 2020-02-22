@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = require("../config/index");
 const sequelize_1 = require("sequelize");
-const sequelize = index_1.Config.getInstance().database;
+const sequelize = index_1.Config.getDatabase();
 class User extends sequelize_1.Model {
 }
 User.init({

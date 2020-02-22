@@ -36,6 +36,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm install
     - run: npm run build --if-present
-    - run: npm run watch
+    - run: npm run test
       env:
         CI: true

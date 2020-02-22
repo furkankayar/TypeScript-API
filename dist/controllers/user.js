@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = require("../config/index");
 const index_2 = require("../models/index");
-var database = index_1.Config.getInstance().database;
+var database = index_1.Config.getDatabase();
 module.exports = () => {
     return {
         getUsername: getUsername,

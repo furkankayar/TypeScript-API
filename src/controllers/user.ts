@@ -3,7 +3,7 @@ import { Config } from "../config/index";
 import { Sequelize } from "sequelize";
 import { User } from "../models/index";
 
-var database: Sequelize = Config.getInstance().database;
+var database: Sequelize = Config.getDatabase();
 
 module.exports = () => {
 

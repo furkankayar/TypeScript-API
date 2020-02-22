@@ -1,7 +1,7 @@
 import { Config } from "../config/index";
 import { Sequelize } from "sequelize";
 
-const sequelize = Config.getInstance().database;
+const sequelize = Config.getDatabase();
 const User = require("./user");
 
 sequelize.sync();

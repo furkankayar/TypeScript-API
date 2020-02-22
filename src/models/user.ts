@@ -2,7 +2,7 @@ import { Config } from "../config/index";
 import { Sequelize, Model, DataTypes, BuildOptions } from "sequelize";
 
 
-const sequelize: Sequelize = Config.getInstance().database;
+const sequelize: Sequelize = Config.getDatabase();
 
 class User extends Model {
     public id!: number;
