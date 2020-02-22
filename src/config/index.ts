@@ -28,8 +28,3 @@ export class Config{
 if(process.env.NODE_ENV !== "TEST"){
     Config.getServer();
 }
-else{
-    Config.getDatabase();
-}
-
-

@@ -4,6 +4,8 @@ import { Sequelize } from "sequelize";
 const sequelize = Config.getDatabase();
 const User = require("./user");
 
-sequelize.sync();
+if(process.env.NODE_ENV !== "TEST"){
+    sequelize.sync();
+}
 
-export { User };
+export { User, sequelize };

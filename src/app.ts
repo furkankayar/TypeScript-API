@@ -1,5 +1,4 @@
 import { Express } from "express";
-import { Config } from "./config/index";
 import express = require("express");
 import bodyParser = require("body-parser");
 import { builtinModules } from "module";

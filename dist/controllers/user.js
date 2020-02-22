@@ -6,9 +6,27 @@ var database = index_1.Config.getDatabase();
 module.exports = () => {
     return {
         getUsername: getUsername,
-        getInfo: getInfo
+        getInfo: getInfo,
+        newUser: newUser
     };
 };
+function newUser(req, res) {
+    let nickname = req.body.nickname;
+    let name = req.body.name;
+    if (nickname === undefined || name === undefined) {
+        return res.status(400).json({ status: "Missing data", error: true });
+    }
+    index_2.User.create({
+        nickname: nickname,
+        name: name
+    })
+        .then((user) => {
+        return res.status(200).json({ status: "success", error: false });
+    })
+        .catch((err) => {
+        return res.status(500).json({ status: "Database error", error: err });
+    });
+}
 function getUsername(req, res) {
     let userId = req.body.userId;
     index_2.User.findOne({
