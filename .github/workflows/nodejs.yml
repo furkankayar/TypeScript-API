@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         node-version: [13.x]
-        redis-version: [5]
+        redis-version: [4, 5]
 
     services:
       postgres:
@@ -36,7 +36,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Start Redis
-      uses: superchargejs/redis-github-action
+      uses: superchargejs/redis-github-action@v1
       with:
         redis-version: ${{ matrix.redis-version }}
     - run: npm install
