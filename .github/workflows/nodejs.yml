@@ -36,7 +36,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Start Redis
-      uses: superchargejs/redis-github-action@v1
+      uses: superchargejs/redis-github-action
       with:
         redis-version: ${{ matrix.redis-version }}
     - run: npm install
