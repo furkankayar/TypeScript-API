@@ -1,9 +1,10 @@
 import { Express } from "express";
-import { Controllers } from "../controllers/interface";
+import { UserController } from "../controllers/index";
+import { oauth2 } from "../app";
 
-module.exports = (app: Express, controllers: Controllers) => {
+module.exports = (app: Express) => {
 
-    app.post('/user/new_user', controllers.userController.newUser);
-    app.get('/user/get_username', controllers.userController.getUsername);
-    app.post('/user/get_userinfo', controllers.userController.getInfo);
+    app.post('/user/new_user', oauth2.authorise(), UserController.newUser);
+    app.get('/user/get_username', UserController.getUsername);
+    app.post('/user/get_userinfo', UserController.getInfo);
 }

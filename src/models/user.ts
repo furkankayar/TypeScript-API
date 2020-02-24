@@ -1,28 +1,46 @@
 import { Config } from "../config/index";
-import { Sequelize, Model, DataTypes, BuildOptions } from "sequelize";
+import { Sequelize, Model, DataTypes } from "sequelize";
 
 
 const sequelize: Sequelize = Config.getDatabase();
 
 class User extends Model {
-    public id!: number;
-    public name!: string;
-    public prefferedName!: string | null;
+    public user_id!: number;
+    public username!: string;
+    public email!: string;
+    public password!: string;
+    public profile_image!: string;
+    public is_active!: boolean;
 }
 
 User.init({
-    id: {
+    user_id: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         autoIncrement: true,
         primaryKey: true
     },
-    name: {
+    username: {
         type: new DataTypes.STRING(128),
         allowNull: false,
+        unique: true
     },
-    nickname: {
+    email: {
         type: new DataTypes.STRING(128),
-        allowNull: true
+        allowNull: false,
+        unique: true
+    },
+    password: {
+        type: new DataTypes.STRING(128),
+        allowNull: false
+    },
+    profile_image: {
+        type: new DataTypes.STRING(128),
+        defaultValue: 'http://localhost:8000/uploads/default.png'
+    },
+    is_active: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
     }
 }, {
     sequelize: sequelize,

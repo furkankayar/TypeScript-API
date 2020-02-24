@@ -1,9 +1,8 @@
 import { Express } from "express";
-import { Controllers } from "../controllers/interface";
 
-module.exports = (app: Express, controllers: Controllers) => {
+module.exports = (app: Express) => {
 
-    var userRoutes = require("./user")(app, controllers);
+    var userRoutes = require("./user")(app);
 
     return{
         userRoutes: userRoutes

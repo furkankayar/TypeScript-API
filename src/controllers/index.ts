@@ -1,9 +1,3 @@
+import { UserController } from "./user";
 
-module.exports = () => {
-    
-    var userController = require("./user")();
-
-    return{
-        userController: userController
-    }
-}
+export { UserController };
