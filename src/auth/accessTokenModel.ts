@@ -1,4 +1,8 @@
+import { RedisClient } from "redis";
 import { UserController } from "../controllers/index";
+import redis = require("redis");
+
+const redisClient: RedisClient = redis.createClient();
 
 class AccessTokenModel{
 
@@ -34,6 +38,41 @@ class AccessTokenModel{
             user_id: user.user_id,
             expires: expires
         }
+
+        redisClient.setex(accessToken, 3600, JSON.stringify(token));
+        callback(null);
+    }
+
+    static getAccessToken(bearerToken: any, callback: Function){
+
+        redisClient.get(bearerToken, (err, session) => {
+            if(err){
+                callback(true, null); 
+            }
+            else{
+                if(session === null){
+                    callback(false, bearerToken);
+                }
+                else{
+                    this.createAccessTokenFrom(session)
+                        .then((accessToken: any) => {
+                            callback(false, accessToken);
+                        });
+                }
+            }
+        });
+    }
+
+    static createAccessTokenFrom(session: any){
+
+        let jsonSession = JSON.parse(session);
+
+        return Promise.resolve({
+            user:{
+                if: jsonSession.username,
+            },
+            expires: jsonSession.expires
+        });
     }
 }
 

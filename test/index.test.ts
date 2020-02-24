@@ -20,27 +20,16 @@ describe("User Test", () => {
     });
   
 
-    it('should POST /user/new_user', async () => {
+    it('should POST /user/register', async () => {
+
         const res = await request(app)
-            .post('/user/new_user')
+            .post('/user/register')
                 .send({ 
-                    nickname: 'testMan',
-                    name: 'Testtest'
+                    username: 'furkank',
+                    password: '123123fk',
+                    email: 'furkan.kayar@ceng.deu.edu.tr'
                 });
         expect(res.status).to.equal(200);
         expect(res.body.error).to.equal(false);
-    });
-
-    it('should GET /user/get_username', async () => {
-        const res = await request(app)
-            .get('/user/get_username')
-                .send({ 
-                    userId: 1 
-                });
-        expect(res.status).to.equal(200);
-        expect(res.body.id).to.equal(1);
-        expect(res.body.name).to.equal("Testtest");
-        expect(res.body.nickname).to.equal("testMan");
-
-    });
+    }).timeout(5000);
 });
