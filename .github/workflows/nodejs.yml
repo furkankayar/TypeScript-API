@@ -29,7 +29,7 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
       
       redis:
-      - '5.0'
+        image: redis
 
     steps:
     - uses: actions/checkout@v2
